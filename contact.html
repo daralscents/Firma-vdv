@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact & offerte | Van der Voet & Co.</title>
+  <meta name="description" content="Neem contact op met Firma S. van der Voet & Co. B.V. in Zoetermeer of vraag een vrijblijvende offerte aan.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-pagina="contact">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="pagina-kop">
+      <div class="container">
+        <h1>Contact &amp; offerte</h1>
+        <p>Heeft u een vraag of wilt u een offerte? Vul het formulier in of neem direct contact met ons op.</p>
+      </div>
+    </section>
+
+    <section class="sectie">
+      <div class="container raster raster-2" style="align-items:start">
+        <form class="formulier" id="contactformulier">
+          <div class="rij">
+            <div><label for="naam">Naam *</label><input id="naam" name="naam" required autocomplete="name"></div>
+            <div><label for="bedrijf">Bedrijf</label><input id="bedrijf" name="bedrijf" autocomplete="organization"></div>
+          </div>
+          <div class="rij">
+            <div><label for="email">E-mail *</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+            <div><label for="telefoon">Telefoon</label><input id="telefoon" name="telefoon" type="tel" autocomplete="tel"></div>
+          </div>
+          <div>
+            <label for="onderwerp-product">Onderwerp</label>
+            <select id="onderwerp-product" name="product"></select>
+          </div>
+          <div>
+            <label for="bericht">Uw vraag of omschrijving *</label>
+            <textarea id="bericht" name="bericht" required placeholder="Bijv. gewenste afmetingen, materiaal, aantal en levertermijn"></textarea>
+          </div>
+          <div><button class="knop knop-primair" type="submit">Verstuur aanvraag</button></div>
+          <div class="melding" id="melding" role="status">Uw e-mailprogramma is geopend met het ingevulde bericht. Verstuur de e-mail om uw aanvraag af te ronden.</div>
+        </form>
+
+        <div class="kaart contact-info">
+          <h3 data-bedrijf="naam"></h3>
+          <dl>
+            <dt>Adres</dt>
+            <dd><span data-bedrijf="straat"></span><br><span data-bedrijf="postcodePlaats"></span></dd>
+            <div data-optioneel>
+              <dt>Telefoon</dt>
+              <dd data-bedrijf="telefoon"></dd>
+            </div>
+            <dt>E-mail</dt>
+            <dd data-bedrijf="email"></dd>
+            <dt>KVK</dt>
+            <dd data-bedrijf="kvk"></dd>
+          </dl>
+          <iframe class="kaart-embed" title="Kaart: Edisonstraat 7B Zoetermeer" loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=4.470%2C52.045%2C4.510%2C52.065&amp;layer=mapnik"></iframe>
+          <p style="margin-top:8px;font-size:0.85rem"><a href="https://www.openstreetmap.org/search?query=Edisonstraat%207B%20Zoetermeer" target="_blank" rel="noopener">Bekijk grotere kaart</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="assets/js/catalogus-data.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

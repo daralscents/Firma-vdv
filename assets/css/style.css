@@ -1,0 +1,265 @@
+/* Firma S. van der Voet & Co. B.V. — huisstijl */
+:root {
+  --staal-900: #1c2329;
+  --staal-800: #263039;
+  --staal-700: #36424d;
+  --staal-500: #6b7a87;
+  --staal-300: #b8c2cb;
+  --staal-100: #eef1f4;
+  --wit: #ffffff;
+  --accent: #e0731f;
+  --accent-donker: #b85a12;
+  --tekst: #1f2933;
+  --tekst-zacht: #52606d;
+  --radius: 10px;
+  --schaduw: 0 6px 24px rgba(20, 30, 40, 0.08);
+  --max: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--tekst);
+  background: var(--wit);
+  line-height: 1.6;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: var(--accent-donker); }
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 0.6em; color: var(--staal-900); }
+h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 1em; }
+
+.container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--staal-900);
+  border-bottom: 3px solid var(--accent);
+}
+.site-header .container {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 72px; gap: 20px;
+}
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--wit); }
+.logo-mark {
+  width: 44px; height: 44px; border-radius: 8px;
+  background: linear-gradient(135deg, #d9dee3, #8d99a5);
+  display: grid; place-items: center;
+  font-weight: 800; color: var(--staal-900); font-size: 0.95rem; letter-spacing: -0.5px;
+}
+.logo-tekst { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-tekst strong { font-size: 1.05rem; }
+.logo-tekst span { font-size: 0.75rem; color: var(--staal-300); }
+
+.nav { display: flex; gap: 6px; }
+.nav a {
+  color: var(--staal-100); text-decoration: none; padding: 8px 14px;
+  border-radius: 6px; font-weight: 500; font-size: 0.95rem;
+}
+.nav a:hover { background: var(--staal-700); }
+.nav a.actief { background: var(--accent); color: var(--wit); }
+
+.nav-toggle {
+  display: none; background: none; border: 1px solid var(--staal-500);
+  color: var(--wit); border-radius: 6px; padding: 8px 12px; font-size: 1rem; cursor: pointer;
+}
+
+@media (max-width: 820px) {
+  .nav-toggle { display: block; }
+  .nav {
+    display: none; position: absolute; top: 75px; left: 0; right: 0;
+    flex-direction: column; background: var(--staal-900); padding: 12px 20px 20px;
+  }
+  .nav.open { display: flex; }
+}
+
+/* Knoppen */
+.knop {
+  display: inline-block; padding: 12px 24px; border-radius: 8px;
+  font-weight: 600; text-decoration: none; border: 2px solid transparent;
+  cursor: pointer; font-size: 1rem; transition: background 0.15s, color 0.15s;
+}
+.knop-primair { background: var(--accent); color: var(--wit); }
+.knop-primair:hover { background: var(--accent-donker); }
+.knop-secundair { border-color: var(--staal-300); color: var(--wit); }
+.knop-secundair:hover { background: rgba(255, 255, 255, 0.1); }
+.knop-licht { border-color: var(--staal-300); color: var(--staal-900); background: var(--wit); }
+.knop-licht:hover { background: var(--staal-100); }
+
+/* Hero */
+.hero {
+  background:
+    linear-gradient(115deg, rgba(28, 35, 41, 0.96) 40%, rgba(54, 66, 77, 0.85)),
+    repeating-linear-gradient(90deg, #3a4651 0 2px, transparent 2px 24px);
+  color: var(--wit); padding: 96px 0 88px;
+}
+.hero h1 { color: var(--wit); max-width: 16ch; }
+.hero p { font-size: 1.15rem; color: var(--staal-300); max-width: 56ch; }
+.hero .knoppen { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+.hero-label {
+  display: inline-block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--accent); font-weight: 700; margin-bottom: 14px;
+}
+
+.pagina-kop { background: var(--staal-900); color: var(--wit); padding: 56px 0 48px; }
+.pagina-kop h1 { color: var(--wit); margin-bottom: 0.3em; }
+.pagina-kop p { color: var(--staal-300); margin: 0; max-width: 60ch; }
+
+/* Secties */
+.sectie { padding: 80px 0; }
+.sectie-grijs { background: var(--staal-100); }
+.sectie-kop { max-width: 640px; margin-bottom: 40px; }
+.sectie-kop p { color: var(--tekst-zacht); }
+
+.raster { display: grid; gap: 24px; }
+.raster-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.raster-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: center; }
+
+.kaart {
+  background: var(--wit); border-radius: var(--radius); padding: 28px;
+  box-shadow: var(--schaduw); border: 1px solid #e3e8ec;
+}
+.kaart .icoon {
+  width: 52px; height: 52px; border-radius: 10px; background: var(--staal-100);
+  display: grid; place-items: center; margin-bottom: 16px; color: var(--accent);
+}
+.kaart p { color: var(--tekst-zacht); margin: 0; }
+
+.lijst-vink { list-style: none; padding: 0; margin: 0 0 1.4em; }
+.lijst-vink li { padding-left: 30px; position: relative; margin-bottom: 10px; }
+.lijst-vink li::before {
+  content: ""; position: absolute; left: 0; top: 6px; width: 18px; height: 18px;
+  border-radius: 50%; background: var(--accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/14px no-repeat, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+
+.beeldvlak {
+  aspect-ratio: 4 / 3; border-radius: var(--radius);
+  background: linear-gradient(135deg, #dfe4e8, #a9b4be 60%, #87939f);
+  display: grid; place-items: center; color: var(--staal-700);
+  position: relative; overflow: hidden;
+}
+.beeldvlak::after {
+  content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(100deg, rgba(255,255,255,0.18) 0 2px, transparent 2px 9px);
+}
+.beeldvlak svg { width: 38%; height: auto; position: relative; z-index: 1; opacity: 0.85; }
+
+.cijfers { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px; text-align: center; }
+.cijfers strong { display: block; font-size: 2.4rem; color: var(--accent); }
+.cijfers span { color: var(--tekst-zacht); }
+
+.cta {
+  background: var(--accent); color: var(--wit); border-radius: var(--radius);
+  padding: 48px; display: flex; justify-content: space-between; align-items: center;
+  gap: 24px; flex-wrap: wrap;
+}
+.cta h2 { color: var(--wit); margin-bottom: 0.2em; }
+.cta p { margin: 0; opacity: 0.9; }
+.cta .knop { background: var(--staal-900); color: var(--wit); }
+.cta .knop:hover { background: var(--staal-800); }
+
+/* Catalogus */
+.catalogus-balk {
+  display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+  margin-bottom: 28px;
+}
+.zoekveld {
+  flex: 1 1 260px; padding: 12px 16px; border: 1px solid var(--staal-300);
+  border-radius: 8px; font-size: 1rem; font-family: inherit;
+}
+.zoekveld:focus, .formulier input:focus, .formulier textarea:focus, .formulier select:focus {
+  outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent;
+}
+.filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter {
+  border: 1px solid var(--staal-300); background: var(--wit); color: var(--staal-800);
+  padding: 8px 14px; border-radius: 999px; font-size: 0.9rem; cursor: pointer; font-family: inherit;
+}
+.filter:hover { border-color: var(--staal-700); }
+.filter.actief { background: var(--staal-900); color: var(--wit); border-color: var(--staal-900); }
+
+.resultaat-info { color: var(--tekst-zacht); font-size: 0.9rem; margin-bottom: 16px; }
+
+.producten { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+.product {
+  background: var(--wit); border: 1px solid #e3e8ec; border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: var(--schaduw); transition: transform 0.15s, box-shadow 0.15s;
+  text-decoration: none; color: inherit;
+}
+.product:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(20, 30, 40, 0.14); }
+.product .beeldvlak { border-radius: 0; aspect-ratio: 16 / 10; }
+.product-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.product-body h3 { margin: 0; }
+.product-body p { color: var(--tekst-zacht); margin: 0; font-size: 0.95rem; flex: 1; }
+.label {
+  display: inline-block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--accent-donker);
+}
+.product-voet {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid #edf0f3; padding-top: 12px; margin-top: 4px; font-size: 0.9rem;
+}
+.product-voet span { color: var(--tekst-zacht); }
+.product-voet strong { color: var(--accent-donker); }
+
+.leeg { text-align: center; padding: 60px 20px; color: var(--tekst-zacht); }
+
+/* Productdetail */
+.kruimel { font-size: 0.9rem; margin-bottom: 12px; color: var(--staal-300); }
+.kruimel a { color: var(--staal-300); }
+.detail { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+@media (max-width: 860px) { .detail { grid-template-columns: 1fr; } }
+.specs { width: 100%; border-collapse: collapse; margin: 8px 0 28px; }
+.specs th, .specs td { text-align: left; padding: 10px 0; border-bottom: 1px solid #e3e8ec; vertical-align: top; }
+.specs th { width: 40%; color: var(--tekst-zacht); font-weight: 500; }
+.tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.tag { background: var(--staal-100); padding: 4px 12px; border-radius: 999px; font-size: 0.85rem; }
+
+/* Formulier */
+.formulier { display: grid; gap: 16px; }
+.formulier label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+.formulier input, .formulier textarea, .formulier select {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--staal-300); border-radius: 8px;
+  font-size: 1rem; font-family: inherit; background: var(--wit);
+}
+.formulier textarea { min-height: 140px; resize: vertical; }
+.formulier .rij { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .formulier .rij { grid-template-columns: 1fr; } }
+.melding {
+  padding: 14px 18px; border-radius: 8px; background: #e7f6ec; color: #1d6b3a;
+  border: 1px solid #b5e0c4; display: none;
+}
+.melding.zichtbaar { display: block; }
+
+.contact-info dl { margin: 0; }
+.contact-info dt { font-weight: 600; color: var(--staal-900); margin-top: 18px; }
+.contact-info dd { margin: 4px 0 0; color: var(--tekst-zacht); }
+
+.kaart-embed { border: 0; width: 100%; height: 320px; border-radius: var(--radius); margin-top: 24px; }
+
+/* Footer */
+.site-footer { background: var(--staal-900); color: var(--staal-300); padding: 56px 0 24px; margin-top: 0; }
+.site-footer h3 { color: var(--wit); font-size: 1rem; }
+.site-footer a { color: var(--staal-300); text-decoration: none; }
+.site-footer a:hover { color: var(--wit); }
+.footer-raster { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+@media (max-width: 760px) { .footer-raster { grid-template-columns: 1fr; } }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: 8px; }
+.footer-onder {
+  border-top: 1px solid var(--staal-700); margin-top: 40px; padding-top: 20px;
+  font-size: 0.85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
