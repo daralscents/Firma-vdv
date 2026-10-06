@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "werkwijze": {
+      "type": "process-steps",
+      "settings": {},
+      "blocks": {
+        "s0": {
+          "type": "step",
+          "settings": {
+            "title": "Kennismaken",
+            "text": "U vertelt wat u nodig heeft, met een tekening, schets of alleen een idee."
+          }
+        },
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Ontwerp & offerte",
+            "text": "We werken het ontwerp uit en sturen een heldere offerte."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Productie",
+            "text": "In onze eigen werkplaats wordt alles vakkundig gemaakt en afgewerkt."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Levering & montage",
+            "text": "We leveren af of monteren op locatie, klaar voor gebruik."
+          }
+        }
+      },
+      "block_order": [
+        "s0",
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Kom langs of neem contact op",
+        "text": "Edisonstraat 7B, 2723 RS Zoetermeer",
+        "button_label": "Contact",
+        "button_link": "/pages/contact",
+        "padding_top": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "werkwijze",
+    "cta"
+  ]
+}

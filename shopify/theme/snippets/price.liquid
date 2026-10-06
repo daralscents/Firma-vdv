@@ -1,0 +1,19 @@
+{%- comment -%}
+  Toont de prijs, of "Prijs op aanvraag" als prijzen verborgen zijn of de prijs 0 is.
+  Gebruik: {% render 'price', product: product, variant: variant, class: '' %}
+{%- endcomment -%}
+{%- liquid
+  assign v = variant | default: product.selected_or_first_available_variant
+  assign quote = false
+  if settings.show_prices == false or v.price == 0
+    assign quote = true
+  endif
+-%}
+{%- if quote -%}
+  <span class="{{ class }} {{ class }}--quote">{{ 'products.price_on_request' | t }}</span>
+{%- else -%}
+  <span class="{{ class }}">
+    {%- if product.price_varies and variant == blank -%}{{ 'products.from' | t }} {% endif -%}
+    {{ v.price | money }}
+  </span>
+{%- endif -%}

@@ -1,0 +1,76 @@
+{
+  "general": {
+    "skip_to_content": "Ga naar inhoud",
+    "main_menu": "Hoofdmenu",
+    "open_menu": "Menu openen",
+    "search": "Zoeken",
+    "search_placeholder": "Zoek in de catalogus, bijv. 'spoeltafel'",
+    "page": "Pagina {{ page }}",
+    "pagination": "Paginering",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "not_found": "Deze pagina bestaat niet (meer)."
+  },
+  "products": {
+    "price_on_request": "Prijs op aanvraag",
+    "from": "Vanaf",
+    "view": "Bekijk",
+    "request_quote": "Offerte aanvragen",
+    "ask_question": "Vraag over dit product",
+    "add_to_cart": "In winkelwagen",
+    "sold_out": "Uitverkocht",
+    "variant": "Uitvoering",
+    "back": "Terug naar catalogus",
+    "also_in": "Ook in {{ collection }}",
+    "show_image": "Toon afbeelding {{ number }}"
+  },
+  "collections": {
+    "catalog": "Catalogus",
+    "all": "Alles",
+    "categories": "Categorieën",
+    "view": "Bekijk producten",
+    "empty": "Geen producten gevonden",
+    "empty_cta": "Staat uw product er niet bij? Wij maken vrijwel alles op maat – neem contact op.",
+    "sort_by": "Sorteren op",
+    "product_count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} producten"
+    }
+  },
+  "contact": {
+    "name": "Naam",
+    "company": "Bedrijf",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "product": "Product",
+    "product_placeholder": "Bijv. RVS spoeltafel (optioneel)",
+    "message": "Uw vraag of omschrijving",
+    "message_placeholder": "Bijv. gewenste afmetingen, materiaal, aantal en levertermijn",
+    "submit": "Verstuur aanvraag",
+    "success": "Bedankt! Uw aanvraag is verstuurd. Wij nemen zo snel mogelijk contact met u op.",
+    "address": "Adres",
+    "hours": "Openingstijden",
+    "map": "Kaart"
+  },
+  "search": {
+    "title": "Zoeken",
+    "results_for": {
+      "one": "{{ count }} resultaat voor “{{ terms }}”",
+      "other": "{{ count }} resultaten voor “{{ terms }}”"
+    },
+    "no_results": "Geen resultaten gevonden"
+  },
+  "cart": {
+    "title": "Winkelwagen",
+    "product": "Product",
+    "quantity": "Aantal",
+    "total": "Totaal",
+    "subtotal": "Subtotaal",
+    "update": "Bijwerken",
+    "checkout": "Afrekenen",
+    "empty": "Uw winkelwagen is leeg"
+  },
+  "blog": {
+    "empty": "Nog geen berichten."
+  }
+}

@@ -1,0 +1,18 @@
+<section class="section{% if section.settings.alt_bg %} section--alt{% endif %}">
+  <div class="container" style="max-width:820px">
+    {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+    <div class="rte">{{ section.settings.text }}</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tekstblok",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Over ons" },
+    { "type": "richtext", "id": "text", "label": "Tekst", "default": "<p>Vertel hier iets over uw bedrijf.</p>" },
+    { "type": "checkbox", "id": "alt_bg", "label": "Grijze achtergrond", "default": false }
+  ],
+  "presets": [{ "name": "Tekstblok" }]
+}
+{% endschema %}

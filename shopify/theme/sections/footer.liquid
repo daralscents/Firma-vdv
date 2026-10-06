@@ -1,0 +1,48 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>{{ section.settings.company }}</h3>
+        {%- if section.settings.about != blank -%}<div class="rte">{{ section.settings.about }}</div>{%- endif -%}
+        <p>{{ section.settings.address | newline_to_br }}</p>
+      </div>
+      <div>
+        <h3>{{ section.settings.menu.title | default: 'Navigatie' }}</h3>
+        <ul>
+          {%- for link in section.settings.menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          {%- if section.settings.phone != blank -%}<li><a href="tel:{{ section.settings.phone | remove: ' ' | remove: '-' }}">{{ section.settings.phone }}</a></li>{%- endif -%}
+          {%- if section.settings.email != blank -%}<li><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>{%- endif -%}
+          {%- if settings.social_facebook != blank -%}<li><a href="{{ settings.social_facebook }}" target="_blank" rel="noopener">Facebook</a></li>{%- endif -%}
+          {%- if settings.social_instagram != blank -%}<li><a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">Instagram</a></li>{%- endif -%}
+          {%- if settings.social_linkedin != blank -%}<li><a href="{{ settings.social_linkedin }}" target="_blank" rel="noopener">LinkedIn</a></li>{%- endif -%}
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.company }}</span>
+      <span>{% if section.settings.kvk != blank %}KVK {{ section.settings.kvk }}{% endif %}</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "company", "label": "Bedrijfsnaam", "default": "Firma S. van der Voet & Co. B.V." },
+    { "type": "richtext", "id": "about", "label": "Korte omschrijving", "default": "<p>Specialist in plaatwerk en metaalconstructies op maat voor horeca, industrie, koeltechniek en design.</p>" },
+    { "type": "textarea", "id": "address", "label": "Adres", "default": "Edisonstraat 7B\n2723 RS Zoetermeer" },
+    { "type": "text", "id": "phone", "label": "Telefoon" },
+    { "type": "text", "id": "email", "label": "E-mail" },
+    { "type": "text", "id": "kvk", "label": "KVK-nummer", "default": "64932257" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+  ]
+}
+{% endschema %}

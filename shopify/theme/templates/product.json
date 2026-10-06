@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "button_link": "/pages/contact",
+        "padding_top": 64,
+        "heading": "Maatwerk nodig?",
+        "text": "Staat het er niet precies bij? Wij maken vrijwel alles in metaal op maat."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "cta"
+  ]
+}

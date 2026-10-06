@@ -1,0 +1,64 @@
+{%- paginate collection.products by section.settings.per_page -%}
+<section class="page-head">
+  <div class="container">
+    <div class="breadcrumbs"><a href="{{ routes.root_url }}">Home</a> / <a href="{{ routes.all_products_collection_url }}">{{ 'collections.catalog' | t }}</a></div>
+    <h1>{% if collection.handle == 'all' %}{{ 'collections.catalog' | t }}{% else %}{{ collection.title }}{% endif %}</h1>
+    {%- if collection.description != blank -%}
+      <div class="rte">{{ collection.description }}</div>
+    {%- elsif collection.handle == 'all' -%}
+      <p>{{ section.settings.catalog_intro }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {%- if section.settings.menu != blank -%}
+      <nav class="chips" aria-label="{{ 'collections.categories' | t }}">
+        <a class="chip{% if collection.handle == 'all' %} is-active{% endif %}" href="{{ routes.all_products_collection_url }}">{{ 'collections.all' | t }}</a>
+        {%- for link in section.settings.menu.links -%}
+          {%- for child in link.links -%}
+            <a class="chip{% if child.active %} is-active{% endif %}" href="{{ child.url }}">{{ child.title }}</a>
+          {%- endfor -%}
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+
+    <div class="toolbar">
+      <span>{{ 'collections.product_count' | t: count: collection.products_count }}</span>
+      <label>
+        <span class="visually-hidden">{{ 'collections.sort_by' | t }}</span>
+        {%- assign current_sort = collection.sort_by | default: collection.default_sort_by -%}
+        <select data-sort>
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value }}"{% if option.value == current_sort %} selected{% endif %}>{{ option.name }}</option>
+          {%- endfor -%}
+        </select>
+      </label>
+    </div>
+
+    <div class="products">
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <div class="empty" style="grid-column:1/-1">
+          <h3>{{ 'collections.empty' | t }}</h3>
+          <p><a href="/pages/contact">{{ 'collections.empty_cta' | t }}</a></p>
+        </div>
+      {%- endfor -%}
+    </div>
+    {% render 'pagination', paginate: paginate %}
+  </div>
+</section>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Collectiepagina",
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "Producten per pagina", "min": 8, "max": 48, "step": 4, "default": 24 },
+    { "type": "link_list", "id": "menu", "label": "Menu voor categorie-knoppen (submenu-items)", "default": "main-menu" },
+    { "type": "textarea", "id": "catalog_intro", "label": "Intro bij volledige catalogus", "default": "Alle producten worden op maat gemaakt. Kies een product voor de details en vraag direct een vrijblijvende offerte aan." }
+  ]
+}
+{% endschema %}

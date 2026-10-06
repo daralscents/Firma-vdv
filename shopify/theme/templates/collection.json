@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {}
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "button_link": "/pages/contact",
+        "heading": "Staat het er niet bij?",
+        "text": "Deze catalogus is een selectie. Vrijwel alles in metaal maken wij op maat.",
+        "button_label": "Vraag het ons"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "cta"
+  ]
+}

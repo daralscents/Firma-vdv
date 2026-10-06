@@ -1,0 +1,67 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="logo" href="{{ routes.root_url }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name, widths: '200,400' }}
+      {%- else -%}
+        <span class="logo__mark">{{ section.settings.logo_mark }}</span>
+      {%- endif -%}
+      {%- if section.settings.show_name -%}
+        <span class="logo__text"><strong>{{ section.settings.name | default: shop.name }}</strong><span>{{ section.settings.tagline }}</span></span>
+      {%- endif -%}
+    </a>
+
+    <nav class="nav" data-nav aria-label="{{ 'general.main_menu' | t }}">
+      <ul class="nav__list">
+        {%- for link in section.settings.menu.links -%}
+          <li class="nav__item">
+            <a class="nav__link" href="{{ link.url }}"{% if link.active or link.child_active %} aria-current="page"{% endif %}>{{ link.title }}{% if link.links != blank %} ▾{% endif %}</a>
+            {%- if link.links != blank -%}
+              <ul class="nav__dropdown">
+                {%- for child in link.links -%}
+                  <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="header-icons">
+      <button class="icon-btn" type="button" data-search-toggle aria-expanded="false" aria-label="{{ 'general.search' | t }}">{% render 'icon', name: 'search' %}</button>
+      {%- if section.settings.show_cart -%}
+        <a class="icon-btn" href="{{ routes.cart_url }}" aria-label="{{ 'cart.title' | t }}">
+          {% render 'icon', name: 'cart' %}
+          {%- if cart.item_count > 0 -%}<span class="cart-count">{{ cart.item_count }}</span>{%- endif -%}
+        </a>
+      {%- endif -%}
+      <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="{{ 'general.open_menu' | t }}">{% render 'icon', name: 'menu' %}</button>
+    </div>
+  </div>
+  <div class="search-bar" data-search-bar>
+    <div class="container">
+      <form action="{{ routes.search_url }}" method="get" role="search">
+        <input type="hidden" name="type" value="product">
+        <input class="input" type="search" name="q" placeholder="{{ 'general.search_placeholder' | t }}" aria-label="{{ 'general.search' | t }}">
+        <button class="btn btn--primary" type="submit">{{ 'general.search' | t }}</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header-wrapper",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "text", "id": "logo_mark", "label": "Logo-letters (als er geen logo is)", "default": "VdV" },
+    { "type": "checkbox", "id": "show_name", "label": "Bedrijfsnaam naast logo tonen", "default": true },
+    { "type": "text", "id": "name", "label": "Bedrijfsnaam", "default": "Van der Voet & Co." },
+    { "type": "text", "id": "tagline", "label": "Ondertitel", "default": "Plaatwerk & metaalconstructies op maat" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "show_cart", "label": "Winkelwagen-icoon tonen", "default": false }
+  ]
+}
+{% endschema %}

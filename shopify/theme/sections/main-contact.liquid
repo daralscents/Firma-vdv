@@ -1,0 +1,62 @@
+<section class="page-head">
+  <div class="container">
+    <h1>{{ page.title }}</h1>
+    {%- if section.settings.intro != blank -%}<p>{{ section.settings.intro }}</p>{%- endif -%}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid grid--2" style="align-items:start">
+    <div>
+      {%- form 'contact', class: 'form-grid' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="notice notice--success" role="status">{{ 'contact.success' | t }}</div>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <div class="notice notice--error" role="alert">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+        <div class="form-row">
+          <div class="field"><label for="ContactName">{{ 'contact.name' | t }} *</label><input class="input" id="ContactName" name="contact[{{ 'contact.name' | t }}]" required autocomplete="name"></div>
+          <div class="field"><label for="ContactCompany">{{ 'contact.company' | t }}</label><input class="input" id="ContactCompany" name="contact[{{ 'contact.company' | t }}]" autocomplete="organization"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="ContactEmail">{{ 'contact.email' | t }} *</label><input class="input" id="ContactEmail" type="email" name="contact[email]" required autocomplete="email" value="{{ form.email }}"></div>
+          <div class="field"><label for="ContactPhone">{{ 'contact.phone' | t }}</label><input class="input" id="ContactPhone" type="tel" name="contact[phone]" autocomplete="tel" value="{{ form.phone }}"></div>
+        </div>
+        <div class="field"><label for="ContactProduct">{{ 'contact.product' | t }}</label><input class="input" id="ContactProduct" name="contact[{{ 'contact.product' | t }}]" data-contact-product placeholder="{{ 'contact.product_placeholder' | t }}"></div>
+        <div class="field"><label for="ContactBody">{{ 'contact.message' | t }} *</label><textarea class="input" id="ContactBody" name="contact[body]" required data-contact-body placeholder="{{ 'contact.message_placeholder' | t }}">{{ form.body }}</textarea></div>
+        <div><button class="btn btn--primary" type="submit">{{ 'contact.submit' | t }}</button></div>
+      {%- endform -%}
+    </div>
+
+    <div class="card contact-card">
+      <h3>{{ section.settings.company }}</h3>
+      {%- if page.content != blank -%}<div class="rte" style="color:#52606d">{{ page.content }}</div>{%- endif -%}
+      <dl>
+        {%- if section.settings.address != blank -%}<dt>{{ 'contact.address' | t }}</dt><dd>{{ section.settings.address | newline_to_br }}</dd>{%- endif -%}
+        {%- if section.settings.phone != blank -%}<dt>{{ 'contact.phone' | t }}</dt><dd><a href="tel:{{ section.settings.phone | remove: ' ' | remove: '-' }}">{{ section.settings.phone }}</a></dd>{%- endif -%}
+        {%- if section.settings.email != blank -%}<dt>{{ 'contact.email' | t }}</dt><dd><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></dd>{%- endif -%}
+        {%- if section.settings.hours != blank -%}<dt>{{ 'contact.hours' | t }}</dt><dd>{{ section.settings.hours | newline_to_br }}</dd>{%- endif -%}
+      </dl>
+      {%- if section.settings.show_map and section.settings.address != blank -%}
+        {%- assign map_query = section.settings.address | newline_to_br | replace: '<br />', ' ' | strip_newlines | url_encode -%}
+        <iframe class="map" title="{{ 'contact.map' | t }}" loading="lazy" src="https://maps.google.com/maps?q={{ map_query }}&output=embed"></iframe>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact & offerte",
+  "settings": [
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "Heeft u een vraag of wilt u een offerte? Vul het formulier in of neem direct contact met ons op." },
+    { "type": "text", "id": "company", "label": "Bedrijfsnaam", "default": "Firma S. van der Voet & Co. B.V." },
+    { "type": "textarea", "id": "address", "label": "Adres", "default": "Edisonstraat 7B\n2723 RS Zoetermeer" },
+    { "type": "text", "id": "phone", "label": "Telefoon" },
+    { "type": "text", "id": "email", "label": "E-mail" },
+    { "type": "textarea", "id": "hours", "label": "Openingstijden" },
+    { "type": "checkbox", "id": "show_map", "label": "Kaart tonen", "default": true }
+  ]
+}
+{% endschema %}

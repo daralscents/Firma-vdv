@@ -1,0 +1,15 @@
+{%- comment -%} Kiest een icoon op basis van het producttype of de collectietitel. Gebruik: {% render 'type-icon', type: product.type %} {%- endcomment -%}
+{%- liquid
+  assign t = type | downcase
+  assign icon_name = 'constructie'
+  if t contains 'horeca' or t contains 'keuken'
+    assign icon_name = 'horeca'
+  elsif t contains 'industrie' or t contains 'food'
+    assign icon_name = 'industrie'
+  elsif t contains 'koel' or t contains 'klimaat'
+    assign icon_name = 'koeltechniek'
+  elsif t contains 'design' or t contains 'kunst'
+    assign icon_name = 'design'
+  endif
+  render 'icon', name: icon_name
+-%}

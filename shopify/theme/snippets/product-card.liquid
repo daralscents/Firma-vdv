@@ -1,0 +1,19 @@
+{%- comment -%} Gebruik: {% render 'product-card', product: product %} {%- endcomment -%}
+<a class="product-card" href="{{ product.url }}">
+  {%- if product.featured_media -%}
+    <div class="media-box">
+      {{ product.featured_media | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 1100px) 360px, (min-width: 600px) 45vw, 90vw', widths: '360,540,700', alt: product.featured_media.alt | default: product.title }}
+    </div>
+  {%- else -%}
+    <div class="media-box media-box--placeholder" aria-hidden="true">{% render 'type-icon', type: product.type %}</div>
+  {%- endif -%}
+  <div class="product-card__body">
+    {%- if product.type != blank -%}<span class="label">{{ product.type }}</span>{%- endif -%}
+    <h3>{{ product.title }}</h3>
+    <p>{{ product.description | strip_html | truncatewords: 16 }}</p>
+    <div class="product-card__foot">
+      {% render 'price', product: product, class: 'product-card__price' %}
+      <strong>{{ 'products.view' | t }} →</strong>
+    </div>
+  </div>
+</a>

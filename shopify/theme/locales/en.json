@@ -1,0 +1,76 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "main_menu": "Main menu",
+    "open_menu": "Open menu",
+    "search": "Search",
+    "search_placeholder": "Search the catalogue",
+    "page": "Page {{ page }}",
+    "pagination": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "not_found": "This page does not exist."
+  },
+  "products": {
+    "price_on_request": "Price on request",
+    "from": "From",
+    "view": "View",
+    "request_quote": "Request a quote",
+    "ask_question": "Ask about this product",
+    "add_to_cart": "Add to cart",
+    "sold_out": "Sold out",
+    "variant": "Variant",
+    "back": "Back to catalogue",
+    "also_in": "Also in {{ collection }}",
+    "show_image": "Show image {{ number }}"
+  },
+  "collections": {
+    "catalog": "Catalogue",
+    "all": "All",
+    "categories": "Categories",
+    "view": "View products",
+    "empty": "No products found",
+    "empty_cta": "Can't find what you need? We make almost anything to measure – get in touch.",
+    "sort_by": "Sort by",
+    "product_count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} products"
+    }
+  },
+  "contact": {
+    "name": "Name",
+    "company": "Company",
+    "email": "Email",
+    "phone": "Phone",
+    "product": "Product",
+    "product_placeholder": "e.g. stainless sink unit (optional)",
+    "message": "Your question or description",
+    "message_placeholder": "e.g. dimensions, material, quantity and lead time",
+    "submit": "Send request",
+    "success": "Thank you! Your request has been sent.",
+    "address": "Address",
+    "hours": "Opening hours",
+    "map": "Map"
+  },
+  "search": {
+    "title": "Search",
+    "results_for": {
+      "one": "{{ count }} result for “{{ terms }}”",
+      "other": "{{ count }} results for “{{ terms }}”"
+    },
+    "no_results": "No results found"
+  },
+  "cart": {
+    "title": "Cart",
+    "product": "Product",
+    "quantity": "Quantity",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "update": "Update",
+    "checkout": "Check out",
+    "empty": "Your cart is empty"
+  },
+  "blog": {
+    "empty": "No posts yet."
+  }
+}

@@ -1,0 +1,17 @@
+<section class="page-head">
+  <div class="container">
+    <div class="breadcrumbs"><a href="{{ blog.url }}">{{ blog.title }}</a></div>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.published_at | date: '%d-%m-%Y' }}</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container" style="max-width:820px">
+    {%- if article.image -%}<div class="media-box" style="margin-bottom:32px">{{ article.image | image_url: width: 1400 | image_tag }}</div>{%- endif -%}
+    <div class="rte">{{ article.content }}</div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Artikel", "settings": [] }
+{% endschema %}

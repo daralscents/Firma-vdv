@@ -1,0 +1,122 @@
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign quote = false
+  if settings.show_prices == false or variant.price == 0
+    assign quote = true
+  endif
+  assign main_collection = product.collections | where: 'handle', collection.handle | first | default: product.collections.first
+  assign encoded_title = product.title | url_encode
+  assign quote_url = '/pages/' | append: section.settings.quote_page | append: '?product=' | append: encoded_title
+-%}
+
+<section class="page-head">
+  <div class="container">
+    <div class="breadcrumbs">
+      <a href="{{ routes.root_url }}">Home</a> /
+      {%- if main_collection -%}
+        <a href="{{ main_collection.url }}">{{ main_collection.title }}</a>
+      {%- else -%}
+        <a href="{{ routes.all_products_collection_url }}">{{ 'collections.catalog' | t }}</a>
+      {%- endif -%}
+    </div>
+    <h1>{{ product.title }}</h1>
+    {%- if product.type != blank -%}<p>{{ product.type }}</p>{%- endif -%}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container product">
+    <div class="product__gallery" data-gallery>
+      {%- if product.media.size > 0 -%}
+        {%- assign first = product.featured_media -%}
+        <div class="media-box">
+          <img data-gallery-main src="{{ first | image_url: width: 1200 }}" srcset="{{ first | image_url: width: 600 }} 600w, {{ first | image_url: width: 1200 }} 1200w" sizes="(min-width: 900px) 600px, 90vw" alt="{{ first.alt | default: product.title | escape }}" width="1200" height="900">
+        </div>
+        {%- if product.media.size > 1 -%}
+          <div class="product__thumbs">
+            {%- for media in product.media -%}
+              {%- if media.media_type == 'image' -%}
+                <button type="button" data-gallery-thumb data-src="{{ media | image_url: width: 1200 }}" data-alt="{{ media.alt | escape }}" class="{% if forloop.first %}is-active{% endif %}" aria-label="{{ 'products.show_image' | t: number: forloop.index }}">
+                  {{ media | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                </button>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="media-box media-box--placeholder" aria-hidden="true">{% render 'type-icon', type: product.type %}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="product__info">
+      {%- if product.type != blank -%}<span class="label">{{ product.type }}</span>{%- endif -%}
+      <div>{% render 'price', product: product, variant: variant, class: 'product__price' %}</div>
+      <div class="rte">{{ product.description }}</div>
+
+      <div class="product__actions">
+        {%- if quote -%}
+          <a class="btn btn--primary btn--block" href="{{ quote_url }}">{{ 'products.request_quote' | t }}</a>
+        {%- else -%}
+          {%- form 'product', product -%}
+            {%- unless product.has_only_default_variant -%}
+              <div class="field variant-select">
+                <label for="Variant-{{ section.id }}">{{ 'products.variant' | t }}</label>
+                <select class="input" id="Variant-{{ section.id }}" name="id">
+                  {%- for v in product.variants -%}
+                    <option value="{{ v.id }}"{% if v == variant %} selected{% endif %}{% unless v.available %} disabled{% endunless %}>{{ v.title }} – {{ v.price | money }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- else -%}
+              <input type="hidden" name="id" value="{{ variant.id }}">
+            {%- endunless -%}
+            <button class="btn btn--primary btn--block" type="submit"{% unless variant.available %} disabled{% endunless %}>
+              {%- if variant.available -%}{{ 'products.add_to_cart' | t }}{%- else -%}{{ 'products.sold_out' | t }}{%- endif -%}
+            </button>
+          {%- endform -%}
+          <a class="btn btn--outline btn--block" href="{{ quote_url }}">{{ 'products.ask_question' | t }}</a>
+        {%- endif -%}
+        <a class="btn btn--outline btn--block" href="{{ main_collection.url | default: routes.all_products_collection_url }}">← {{ 'products.back' | t }}</a>
+      </div>
+
+      {%- if section.settings.show_trust -%}
+        <ul class="product__trust">
+          <li>{% render 'icon', name: 'ruler' %} {{ section.settings.trust_1 }}</li>
+          <li>{% render 'icon', name: 'wrench' %} {{ section.settings.trust_2 }}</li>
+          <li>{% render 'icon', name: 'truck' %} {{ section.settings.trust_3 }}</li>
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{%- if section.settings.show_related and main_collection.products_count > 1 -%}
+  <section class="section section--alt">
+    <div class="container">
+      <h2>{{ 'products.also_in' | t: collection: main_collection.title }}</h2>
+      <div class="products">
+        {%- assign shown = 0 -%}
+        {%- for p in main_collection.products -%}
+          {%- if p.id != product.id and shown < 3 -%}
+            {% render 'product-card', product: p %}
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Productpagina",
+  "settings": [
+    { "type": "text", "id": "quote_page", "label": "Handle van de offertepagina", "default": "contact" },
+    { "type": "checkbox", "id": "show_trust", "label": "Voordelen tonen", "default": true },
+    { "type": "text", "id": "trust_1", "label": "Voordeel 1", "default": "Volledig op maat gemaakt" },
+    { "type": "text", "id": "trust_2", "label": "Voordeel 2", "default": "Eigen werkplaats in Zoetermeer" },
+    { "type": "text", "id": "trust_3", "label": "Voordeel 3", "default": "Levering en montage op locatie" },
+    { "type": "checkbox", "id": "show_related", "label": "Vergelijkbare producten tonen", "default": true }
+  ]
+}
+{% endschema %}

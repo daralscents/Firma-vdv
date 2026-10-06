@@ -1,0 +1,42 @@
+<section class="section{% if section.settings.alt_bg %} section--alt{% endif %}">
+  <div class="container grid grid--2">
+    <div{% if section.settings.image_first %} style="order:2"{% endif %}>
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+      {%- assign points = section.blocks | where: 'type', 'point' -%}
+      {%- if points.size > 0 -%}
+        <ul class="checklist">
+          {%- for block in points -%}<li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>{%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}<a class="btn btn--primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>{%- endif -%}
+    </div>
+    {%- if section.settings.image != blank -%}
+      <div class="media-box">{{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '600,900,1200', sizes: '(min-width: 900px) 560px, 90vw' }}</div>
+    {%- else -%}
+      <div class="media-box media-box--placeholder" aria-hidden="true">{% render 'icon', name: section.settings.placeholder_icon %}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Afbeelding met tekst",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Afbeelding" },
+    { "type": "select", "id": "placeholder_icon", "label": "Icoon zonder afbeelding", "default": "constructie", "options": [
+      { "value": "constructie", "label": "Constructie" }, { "value": "industrie", "label": "Industrie" }, { "value": "horeca", "label": "Horeca" }, { "value": "koeltechniek", "label": "Koeltechniek" }, { "value": "design", "label": "Design" }
+    ] },
+    { "type": "checkbox", "id": "image_first", "label": "Afbeelding links", "default": false },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Waarom Van der Voet & Co.?" },
+    { "type": "richtext", "id": "text", "label": "Tekst" },
+    { "type": "text", "id": "button_label", "label": "Knoptekst" },
+    { "type": "url", "id": "button_link", "label": "Knoplink" },
+    { "type": "checkbox", "id": "alt_bg", "label": "Grijze achtergrond", "default": false }
+  ],
+  "blocks": [
+    { "type": "point", "name": "Opsommingspunt", "settings": [{ "type": "text", "id": "text", "label": "Tekst", "default": "Ontwerp, productie en montage onder één dak" }] }
+  ],
+  "presets": [{ "name": "Afbeelding met tekst" }]
+}
+{% endschema %}

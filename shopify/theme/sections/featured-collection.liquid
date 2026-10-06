@@ -1,0 +1,34 @@
+{%- assign c = section.settings.collection | default: collections.all -%}
+<section class="section{% if section.settings.alt_bg %} section--alt{% endif %}">
+  <div class="container">
+    <div class="section-head">
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    <div class="products">
+      {%- for product in c.products limit: section.settings.limit -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <p class="empty">{{ 'collections.empty' | t }}</p>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.button_label != blank -%}
+      <p style="margin-top:32px"><a class="btn btn--outline" href="{{ c.url | default: routes.all_products_collection_url }}">{{ section.settings.button_label }} →</a></p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Uitgelichte producten",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Uitgelicht uit de catalogus" },
+    { "type": "richtext", "id": "text", "label": "Tekst", "default": "<p>Een greep uit wat we regelmatig maken. Alles is op maat leverbaar.</p>" },
+    { "type": "collection", "id": "collection", "label": "Collectie" },
+    { "type": "range", "id": "limit", "label": "Aantal producten", "min": 2, "max": 12, "step": 1, "default": 6 },
+    { "type": "text", "id": "button_label", "label": "Knoptekst", "default": "Volledige catalogus" },
+    { "type": "checkbox", "id": "alt_bg", "label": "Grijze achtergrond", "default": true }
+  ],
+  "presets": [{ "name": "Uitgelichte producten" }]
+}
+{% endschema %}

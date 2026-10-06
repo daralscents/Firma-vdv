@@ -1,0 +1,169 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "button_2_link": "/pages/contact"
+      }
+    },
+    "vakgebieden": {
+      "type": "collection-grid",
+      "settings": {},
+      "blocks": {
+        "c0": {
+          "type": "collection",
+          "settings": {
+            "collection": "horeca-grootkeuken"
+          }
+        },
+        "c1": {
+          "type": "collection",
+          "settings": {
+            "collection": "food-non-food-industrie"
+          }
+        },
+        "c2": {
+          "type": "collection",
+          "settings": {
+            "collection": "koel-klimaattechniek"
+          }
+        },
+        "c3": {
+          "type": "collection",
+          "settings": {
+            "collection": "plaatwerk-constructies"
+          }
+        },
+        "c4": {
+          "type": "collection",
+          "settings": {
+            "collection": "kunst-design"
+          }
+        },
+        "anders": {
+          "type": "link",
+          "settings": {
+            "link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "c0",
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "anders"
+      ]
+    },
+    "uitgelicht": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "horeca-grootkeuken",
+        "limit": 3
+      }
+    },
+    "waarom": {
+      "type": "image-with-text",
+      "settings": {
+        "heading": "Waarom Van der Voet & Co.?",
+        "button_label": "Meer over ons",
+        "button_link": "/pages/over-ons"
+      },
+      "blocks": {
+        "p0": {
+          "type": "point",
+          "settings": {
+            "text": "Ruime ervaring in plaatwerk en metaalconstructies"
+          }
+        },
+        "p1": {
+          "type": "point",
+          "settings": {
+            "text": "Ontwerp, productie en montage onder één dak"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "text": "Enkelstuks en kleine series, precies op maat"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "text": "Hygiënisch RVS-werk voor horeca en voedingsindustrie"
+          }
+        },
+        "p4": {
+          "type": "point",
+          "settings": {
+            "text": "Persoonlijk contact, direct met de vakman"
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ]
+    },
+    "werkwijze": {
+      "type": "process-steps",
+      "settings": {},
+      "blocks": {
+        "s0": {
+          "type": "step",
+          "settings": {
+            "title": "Kennismaken",
+            "text": "U vertelt wat u nodig heeft, met een tekening, schets of alleen een idee."
+          }
+        },
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Ontwerp & offerte",
+            "text": "We werken het ontwerp uit en sturen een heldere offerte."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Productie",
+            "text": "In onze eigen werkplaats wordt alles vakkundig gemaakt en afgewerkt."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Levering & montage",
+            "text": "We leveren af of monteren op locatie, klaar voor gebruik."
+          }
+        }
+      },
+      "block_order": [
+        "s0",
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "button_link": "/pages/contact",
+        "padding_top": 64
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "vakgebieden",
+    "uitgelicht",
+    "waarom",
+    "werkwijze",
+    "cta"
+  ]
+}

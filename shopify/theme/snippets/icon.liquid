@@ -1,0 +1,27 @@
+{%- comment -%} Gebruik: {% render 'icon', name: 'horeca' %} {%- endcomment -%}
+{%- case name -%}
+  {%- when 'horeca' -%}
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="24" width="52" height="10" rx="2"/><path d="M20 24v-6a6 6 0 0 1 12 0M32 18v6M12 34v22M52 34v22M12 46h40"/><rect x="36" y="26" width="16" height="6" rx="1"/></svg>
+  {%- when 'industrie' -%}
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="30" width="56" height="8" rx="4"/><circle cx="12" cy="34" r="2"/><circle cx="52" cy="34" r="2"/><path d="M10 38v18M54 38v18M22 30V18h20v12M26 18l6-10 6 10"/></svg>
+  {%- when 'koeltechniek' -%}
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M32 6v52M9.5 19l45 26M9.5 45l45-26M26 10l6 6 6-6M26 54l6-6 6 6M10 27l8-2-2-8M54 37l-8 2 2 8M10 37l8 2-2 8M54 27l-8-2 2-8"/></svg>
+  {%- when 'design' -%}
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M32 6c10 12 18 18 18 30a18 18 0 0 1-36 0C14 24 22 18 32 6z"/><path d="M24 50h16M32 36v20M26 30c2-6 6-10 6-10"/></svg>
+  {%- when 'plus' -%}
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" aria-hidden="true"><circle cx="32" cy="32" r="24"/><path d="M32 20v24M20 32h24"/></svg>
+  {%- when 'search' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+  {%- when 'cart' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.5 12h-11z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+  {%- when 'menu' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  {%- when 'ruler' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4M14 8v3M18 8v4"/></svg>
+  {%- when 'wrench' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>
+  {%- when 'truck' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2zM14 10h4l4 4v2h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+  {%- else -%}
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M6 56h52M10 56V20h44v36M10 20l11 12 11-12 11 12 11-12M10 44l11-12 11 12 11-12 11 12"/></svg>
+{%- endcase -%}

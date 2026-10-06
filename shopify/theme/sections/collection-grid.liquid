@@ -1,0 +1,60 @@
+<section class="section{% if section.settings.alt_bg %} section--alt{% endif %}">
+  <div class="container">
+    <div class="section-head">
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    <div class="grid grid--3">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'collection' -%}
+            {%- assign c = block.settings.collection -%}
+            <a class="card" href="{% if c != blank %}{{ c.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}" {{ block.shopify_attributes }}>
+              <div class="card__icon">{% render 'type-icon', type: c.title %}</div>
+              <h3>{{ block.settings.title | default: c.title | default: 'Collectie' }}</h3>
+              <p>{{ block.settings.text | default: c.description | strip_html | truncatewords: 18 }}</p>
+              <span class="card__more">{{ 'collections.view' | t }} →</span>
+            </a>
+          {%- when 'link' -%}
+            <a class="card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+              <div class="card__icon">{% render 'icon', name: 'plus' %}</div>
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.text }}</p>
+            </a>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Vakgebieden / collecties",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Wat wij maken" },
+    { "type": "richtext", "id": "text", "label": "Tekst", "default": "<p>Eén werkplaats, veel disciplines. Alles wordt in eigen huis ontworpen, gemaakt en waar nodig op locatie gemonteerd.</p>" },
+    { "type": "checkbox", "id": "alt_bg", "label": "Grijze achtergrond", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collectie",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collectie" },
+        { "type": "text", "id": "title", "label": "Titel (optioneel)" },
+        { "type": "textarea", "id": "text", "label": "Tekst (optioneel)" }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "Link-kaart",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titel", "default": "Iets anders in gedachten?" },
+        { "type": "textarea", "id": "text", "label": "Tekst", "default": "Vertel ons uw idee. Wij denken mee en maken het." },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Vakgebieden / collecties", "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }] }]
+}
+{% endschema %}
